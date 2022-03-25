@@ -1,0 +1,336 @@
+
+
+
+
+netmod                                                      M. Boucadair
+Internet-Draft                                                    Orange
+Updates: 8407 (if approved)                                25 March 2022
+Intended status: Standards Track                                        
+Expires: 26 September 2022
+
+
+       Recommendations for Creating IANA-Maintained YANG Modules
+               draft-boucadair-netmod-iana-registries-02
+
+Abstract
+
+   This document provides a set of guidelines for YANG module authors
+   related to the design of IANA-maintained modules.  These guidelines
+   are meant to leverage existing IANA registries and use YANG as just
+   another format to present the content of these registries.
+
+   This document updates RFC 8407 by providing additional guidelines for
+   IANA-maintained modules.  It does not change anything written in RFC
+   8407.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 26 September 2022.
+
+Copyright Notice
+
+   Copyright (c) 2022 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+
+
+
+Boucadair               Expires 26 September 2022               [Page 1]
+
+Internet-Draft        IANA-Maintained YANG Modules            March 2022
+
+
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Guidelines for IANA-Maintained Registries . . . . . . . . . .   3
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
+
+1.  Introduction
+
+   IANA maintains a set of registries that are key for interoperability.
+   The content of these registries are usually available using various
+   formats (e.g., plain text, XML).  However, there were some confusion
+   in the past about whether the content of some registries is dependent
+   on a specific representation format.  For example, Section 5 of
+   [RFC8892] was published to clarify that MIB and YANG modules are
+   merely additional formats in which the "Interface Types (ifType)" and
+   "Tunnel Types (tunnelType)" registries are available.  The MIB
+   [RFC2863] and YANG modules [RFC7224][RFC8675] are not separate
+   registries, and the same values are always present in all formats of
+   the same registry.
+
+   Also, some YANG modules include parameters and values directly in a
+   module that is not maintained by IANA while these are populated in an
+   IANA registry.  Such a design is suboptimal as it creates another
+   source of information that may deviate from the IANA registry as new
+   values are assigned.
+
+   For the sake of consistency, better flexibility to support new
+   values, and maintaining IANA registries as the unique authoritative
+   source of information, when such an information is maintained in a
+   registry, this document encourages the use of IANA-maintained
+   modules.
+
+   Section 3 updates the guidelines in [RFC8407].
+
+
+
+
+
+
+
+Boucadair               Expires 26 September 2022               [Page 2]
+
+Internet-Draft        IANA-Maintained YANG Modules            March 2022
+
+
+2.  Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119][RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   This document makes use of the terms defined in Section 2 of
+   [RFC8407].
+
+3.  Guidelines for IANA-Maintained Registries
+
+   When designing a YANG module for a functionality governed by a
+   protocol for which IANA maintains a registry, it is RECOMMENDED to
+   specify an IANA-maintained module that echoes the content of that
+   registry.  This is superior to including them as part of an IETF-
+   maintained module.
+
+   When one or multiple sub-registries are available under the same
+   registry, it is RECOMMENDED to define an IANA-maintained module for
+   each sub-registry.  However, module designers MAY consider defining
+   one single IANA-maintained module that covers all sub-registries if
+   maintaining that single module is manageable (e.g., very few values
+   are present or expected to be present for each sub-registry).  An
+   example of such a module is documented in Section 5.2 of [RFC9132].
+
+   An IANA-maintained module MAY use identities (e.g., [RFC8675]) or
+   enumerations (e.g., [RFC9108]).  The final decision is left to the
+   module designers and should be made based upon specifics related to
+   the intended use of the module.  It is worth mentioning that
+   identities are useful if the registry entries are organized
+   hierarchically, possibly including multiple inheritances.  It is
+   RECOMMENDED that the reasoning for the design choice is documented in
+   the companion specification document that registers the module.  For
+   example, [I-D.ietf-dots-telemetry] defines an IANA-maintained module
+   that uses enumerations for the following reason:
+
+    "The DOTS telemetry module (Section 10.1) uses "enumerations" rather
+     than "identities" to define units, samples, and intervals because
+     otherwise the namespace identifier "ietf-dots-telemetry" must be
+     included when a telemetry attribute is included (e.g., in a
+     mitigation efficacy update).  The use of "identities" is thus
+     suboptimal from a message compactness standpoint; one of the key
+     requirements for DOTS messages."
+
+
+
+
+
+
+Boucadair               Expires 26 September 2022               [Page 3]
+
+Internet-Draft        IANA-Maintained YANG Modules            March 2022
+
+
+   Designers of IANA-maintained modules MAY supply the full Initial
+   version of the module in a specification document that registers the
+   module or only a script to be used (including by IANA) for generating
+   the module (e.g., an XSLT stylesheet as in Appendix A of [RFC9108]).
+   When a script is used, the Internet-Draft that defines an IANA-
+   maintained module SHOULD include an appendix with the initial full
+   version of the module.  Including such an appendix in pre-RFC
+   versions is meant to assess the correctness of the outcome of the
+   supplied script.  The authors MUST include a note to the RFC Editor
+   requesting that the appendix be removed before publication as RFC.
+   Publishing initial versions of IANA-maintained modules in RFCs may be
+   misused by some implementers despite the appropriate language to
+   refer to the IANA registry to retrieve the up-to-date module.
+
+      Note: [Style] provides XSLT 1.0 stylesheets and other tools for
+      translating IANA registries to YANG modules.  The tools can be
+      used to generate up-to-date revisions of an IANA-maintained module
+      based upon the XML representation of an IANA registry.
+
+4.  IANA Considerations
+
+   This document does not require any IANA action.
+
+5.  Security Considerations
+
+   This document does not introduce new concerns other than those
+   already discussed in Section 15 of [RFC8407].
+
+6.  Acknowledgements
+
+   This document is triggered by a discussion the author had with Dhruv
+   Dhody and Jensen Zhang.
+
+   Thanks to Juergen Schoenwaelder and Ladislav Lhotka for the
+   discussion and comments.
+
+7.  References
+
+7.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+
+
+Boucadair               Expires 26 September 2022               [Page 4]
+
+Internet-Draft        IANA-Maintained YANG Modules            March 2022
+
+
+   [RFC8407]  Bierman, A., "Guidelines for Authors and Reviewers of
+              Documents Containing YANG Data Models", BCP 216, RFC 8407,
+              DOI 10.17487/RFC8407, October 2018,
+              <https://www.rfc-editor.org/info/rfc8407>.
+
+7.2.  Informative References
+
+   [I-D.ietf-dots-telemetry]
+              Boucadair, M., Reddy.K, T., Doron, E., Chen, M., and J.
+              Shallow, "Distributed Denial-of-Service Open Threat
+              Signaling (DOTS) Telemetry", Work in Progress, Internet-
+              Draft, draft-ietf-dots-telemetry-25, 21 March 2022,
+              <https://www.ietf.org/archive/id/draft-ietf-dots-
+              telemetry-25.txt>.
+
+   [RFC2863]  McCloghrie, K. and F. Kastenholz, "The Interfaces Group
+              MIB", RFC 2863, DOI 10.17487/RFC2863, June 2000,
+              <https://www.rfc-editor.org/info/rfc2863>.
+
+   [RFC7224]  Bjorklund, M., "IANA Interface Type YANG Module",
+              RFC 7224, DOI 10.17487/RFC7224, May 2014,
+              <https://www.rfc-editor.org/info/rfc7224>.
+
+   [RFC8675]  Boucadair, M., Farrer, I., and R. Asati, "A YANG Data
+              Model for Tunnel Interface Types", RFC 8675,
+              DOI 10.17487/RFC8675, November 2019,
+              <https://www.rfc-editor.org/info/rfc8675>.
+
+   [RFC8892]  Thaler, D. and D. Romascanu, "Guidelines and Registration
+              Procedures for Interface Types and Tunnel Types",
+              RFC 8892, DOI 10.17487/RFC8892, August 2020,
+              <https://www.rfc-editor.org/info/rfc8892>.
+
+   [RFC9108]  Lhotka, L. and P. Špaček, "YANG Types for DNS Classes and
+              Resource Record Types", RFC 9108, DOI 10.17487/RFC9108,
+              September 2021, <https://www.rfc-editor.org/info/rfc9108>.
+
+   [RFC9132]  Boucadair, M., Ed., Shallow, J., and T. Reddy.K,
+              "Distributed Denial-of-Service Open Threat Signaling
+              (DOTS) Signal Channel Specification", RFC 9132,
+              DOI 10.17487/RFC9132, September 2021,
+              <https://www.rfc-editor.org/info/rfc9132>.
+
+   [Style]    The Unicode Consortium, "IANA YANG",
+              <https://github.com/llhotka/iana-yang>.
+
+Author's Address
+
+
+
+
+Boucadair               Expires 26 September 2022               [Page 5]
+
+Internet-Draft        IANA-Maintained YANG Modules            March 2022
+
+
+   Mohamed Boucadair
+   Orange
+   35000 Rennes
+   France
+   Email: mohamed.boucadair@orange.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Boucadair               Expires 26 September 2022               [Page 6]
