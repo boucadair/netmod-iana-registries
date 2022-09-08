@@ -74,13 +74,13 @@ Table of Contents
    3.  Guidelines for IANA-Maintained Modules  . . . . . . . . . . .   3
    4.  Guidance for Writing the IANA Considerations for RFCs Defining
            IANA-Maintained Modules . . . . . . . . . . . . . . . . .   4
-     4.1.  Template IANA-Maintained Modules with Identities  . . . .   5
-     4.2.  Template IANA-Maintained Modules with Enumerations  . . .   6
+     4.1.  Template for IANA-Maintained Modules with Identities  . .   5
+     4.2.  Template for IANA-Maintained Modules with Enumerations  .   6
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
    7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   7
    8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
      8.2.  Informative References  . . . . . . . . . . . . . . . . .   8
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   9
 
@@ -251,11 +251,14 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
    IANA-maintained modules with identities and Section 4.2 for IANA-
    maintained modules with enumerations.  Authors may modify the
    template to reflect specifics of their modules (e.g., Multiple
-   registries can be listed when a single IANA-maintained module, no
+   registries can be listed for a single IANA-maintained module, no
    explicit description (or name) field is listed under the
    authoritative IANA registry).
 
-4.1.  Template IANA-Maintained Modules with Identities
+   The following templates are to be considered in addition to the
+   required information that is provided in Section 3.8 of [RFC8407].
+
+4.1.  Template for IANA-Maintained Modules with Identities
 
    This document defines the initial version of the IANA-maintained
    "iana-foo" YANG module.  The most recent version of the YANG module
@@ -267,13 +270,10 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
       New values must not be directly added to the "iana-foo" YANG
       module.  They must instead be added to the "foo" registry.
 
-   When a value is added to the "foo" registry, a new "identity"
-   statement must be added to the "iana-foo" YANG module.  The name of
-   the "identity" is the lower-case of the name provided in the
-   registry.  The "identity" statement should have the following sub-
-   statements defined:
 
-   "base":        Contains 'name-base-identity'.
+
+
+
 
 
 
@@ -281,6 +281,14 @@ Boucadair                 Expires 12 March 2023                 [Page 5]
 
 Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
+
+   When a value is added to the "foo" registry, a new "identity"
+   statement must be added to the "iana-foo" YANG module.  The name of
+   the "identity" is the lower-case of the name provided in the
+   registry.  The "identity" statement should have the following sub-
+   statements defined:
+
+   "base":        Contains 'name-base-identity-defined-in-foo'.
 
    "status":      Include only if a registration has been deprecated or
                   obsoleted.  IANA "deprecated" maps to YANG status
@@ -298,12 +306,13 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
    statement with a unique revision date must be added in front of the
    existing revision statements.
 
-   IANA is requested to add this note to [reference-to-the-registry]:
+   IANA is requested to add this note to [reference-to-the-iana-foo-
+   registry]:
 
       When this registry is modified, the YANG module "iana-foo" must be
       updated as defined in RFCXXXX.
 
-4.2.  Template IANA-Maintained Modules with Enumerations
+4.2.  Template for IANA-Maintained Modules with Enumerations
 
    This document defines the initial version of the IANA-maintained
    "iana-foo" YANG module.  The most recent version of the YANG module
@@ -321,15 +330,6 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
    "enum":        Replicates a name from the registry.
 
-   "value":       Contains the decimal value the IANA-assigned value
-                  corresponding to the 'foo'.
-
-   "status":      Include only if a registration has been deprecated or
-                  obsoleted.  IANA "deprecated" maps to YANG status
-                  "deprecated", and IANA "obsolete" maps to YANG status
-                  "obsolete".
-
-   "description":  Replicates the description from the registry.
 
 
 
@@ -337,6 +337,15 @@ Boucadair                 Expires 12 March 2023                 [Page 6]
 
 Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
+
+   "value":       Contains the decimal value of the IANA-assigned value.
+
+   "status":      Is included only if a registration has been deprecated
+                  or obsoleted.  IANA "deprecated" maps to YANG status
+                  "deprecated", and IANA "obsolete" maps to YANG status
+                  "obsolete".
+
+   "description":  Replicates the description from the registry.
 
    "reference":   Replicates the reference(s) from the registry with the
                   title of the document(s) added.
@@ -347,7 +356,8 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
    statement with a unique revision date must be added in front of the
    existing revision statements.
 
-   IANA is requested to add this note to [reference-to-the-registry]:
+   IANA is requested to add this note to [reference-to-the-iana-foo-
+   registry]:
 
       When this registry is modified, the YANG module "iana-foo" must be
       updated as defined in RFCXXXX.
@@ -376,16 +386,6 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
 8.  References
 
-8.1.  Normative References
-
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
-
-
-
-
 
 
 
@@ -393,6 +393,13 @@ Boucadair                 Expires 12 March 2023                 [Page 7]
 
 Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
+
+8.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC8126]  Cotton, M., Leiba, B., and T. Narten, "Guidelines for
               Writing an IANA Considerations Section in RFCs", BCP 26,
@@ -436,19 +443,18 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
               Resource Record Types", RFC 9108, DOI 10.17487/RFC9108,
               September 2021, <https://www.rfc-editor.org/info/rfc9108>.
 
-   [RFC9132]  Boucadair, M., Ed., Shallow, J., and T. Reddy.K,
-              "Distributed Denial-of-Service Open Threat Signaling
-              (DOTS) Signal Channel Specification", RFC 9132,
-              DOI 10.17487/RFC9132, September 2021,
-              <https://www.rfc-editor.org/info/rfc9132>.
-
-
 
 
 Boucadair                 Expires 12 March 2023                 [Page 8]
 
 Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
+
+   [RFC9132]  Boucadair, M., Ed., Shallow, J., and T. Reddy.K,
+              "Distributed Denial-of-Service Open Threat Signaling
+              (DOTS) Signal Channel Specification", RFC 9132,
+              DOI 10.17487/RFC9132, September 2021,
+              <https://www.rfc-editor.org/info/rfc9132>.
 
    [RFC9244]  Boucadair, M., Ed., Reddy.K, T., Ed., Doron, E., Chen, M.,
               and J. Shallow, "Distributed Denial-of-Service Open Threat
@@ -466,12 +472,6 @@ Author's Address
    35000 Rennes
    France
    Email: mohamed.boucadair@orange.com
-
-
-
-
-
-
 
 
 

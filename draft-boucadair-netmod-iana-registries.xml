@@ -206,12 +206,16 @@
       target="tem1"></xref> for IANA-maintained modules with identities and
       <xref target="tem2"></xref> for IANA-maintained modules with
       enumerations. Authors may modify the template to reflect specifics of
-      their modules (e.g., Multiple registries can be listed when a single
+      their modules (e.g., Multiple registries can be listed for a single
       IANA-maintained module, no explicit description (or name) field is
       listed under the authoritative IANA registry).</t>
 
+      <t>The following templates are to be considered in addition to the
+      required information that is provided in Section 3.8 of <xref
+      target="RFC8407"></xref>.</t>
+
       <section anchor="tem1"
-               title="Template IANA-Maintained Modules with Identities">
+               title="Template for IANA-Maintained Modules with Identities">
         <t>This document defines the initial version of the IANA-maintained
         "iana-foo" YANG module. The most recent version of the YANG module is
         available from the "YANG Parameters" registry <xref
@@ -230,7 +234,8 @@
         defined:</t>
 
         <t><list hangIndent="15" style="hanging">
-            <t hangText="&quot;base&quot;:">Contains 'name-base-identity'.</t>
+            <t hangText="&quot;base&quot;:">Contains
+            'name-base-identity-defined-in-foo'.</t>
 
             <t hangText="&quot;status&quot;:">Include only if a registration
             has been deprecated or obsoleted. IANA "deprecated" maps to YANG
@@ -251,7 +256,7 @@
         existing revision statements.</t>
 
         <t>IANA is requested to add this note to
-        [reference-to-the-registry]:</t>
+        [reference-to-the-iana-foo-registry]:</t>
 
         <t><list style="empty">
             <t>When this registry is modified, the YANG module "iana-foo" must
@@ -260,7 +265,7 @@
       </section>
 
       <section anchor="tem2"
-               title="Template IANA-Maintained Modules with Enumerations">
+               title="Template for IANA-Maintained Modules with Enumerations">
         <t>This document defines the initial version of the IANA-maintained
         "iana-foo" YANG module. The most recent version of the YANG module is
         available from the "YANG Parameters" registry <xref
@@ -280,13 +285,13 @@
             <t hangText="&quot;enum&quot;:">Replicates a name from the
             registry.</t>
 
-            <t hangText="&quot;value&quot;:">Contains the decimal value the
-            IANA-assigned value corresponding to the 'foo'.</t>
+            <t hangText="&quot;value&quot;:">Contains the decimal value of the
+            IANA-assigned value.</t>
 
-            <t hangText="&quot;status&quot;:">Include only if a registration
-            has been deprecated or obsoleted. IANA "deprecated" maps to YANG
-            status "deprecated", and IANA "obsolete" maps to YANG status
-            "obsolete".</t>
+            <t hangText="&quot;status&quot;:">Is included only if a
+            registration has been deprecated or obsoleted. IANA "deprecated"
+            maps to YANG status "deprecated", and IANA "obsolete" maps to YANG
+            status "obsolete".</t>
 
             <t hangText="&quot;description&quot;:">Replicates the description
             from the registry.</t>
@@ -302,7 +307,7 @@
         existing revision statements.</t>
 
         <t>IANA is requested to add this note to
-        [reference-to-the-registry]:</t>
+        [reference-to-the-iana-foo-registry]:</t>
 
         <t><list style="empty">
             <t>When this registry is modified, the YANG module "iana-foo" must
