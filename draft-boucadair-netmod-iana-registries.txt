@@ -4,13 +4,13 @@
 
 netmod                                                      M. Boucadair
 Internet-Draft                                                    Orange
-Updates: 8407, 8126 (if approved)                       8 September 2022
+Updates: 8407, 8126 (if approved)                         7 October 2022
 Intended status: Standards Track                                        
-Expires: 12 March 2023
+Expires: 10 April 2023
 
 
        Recommendations for Creating IANA-Maintained YANG Modules
-               draft-boucadair-netmod-iana-registries-03
+               draft-boucadair-netmod-iana-registries-05
 
 Abstract
 
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 March 2023.
+   This Internet-Draft will expire on 10 April 2023.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Boucadair                 Expires 12 March 2023                 [Page 1]
+Boucadair                 Expires 10 April 2023                 [Page 1]
 
-Internet-Draft        IANA-Maintained YANG Modules        September 2022
+Internet-Draft        IANA-Maintained YANG Modules          October 2022
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Boucadair                 Expires 12 March 2023                 [Page 2]
+Boucadair                 Expires 10 April 2023                 [Page 2]
 
-Internet-Draft        IANA-Maintained YANG Modules        September 2022
+Internet-Draft        IANA-Maintained YANG Modules          October 2022
 
 
    For the sake of consistency, better flexibility to support new
@@ -165,9 +165,9 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
 
 
-Boucadair                 Expires 12 March 2023                 [Page 3]
+Boucadair                 Expires 10 April 2023                 [Page 3]
 
-Internet-Draft        IANA-Maintained YANG Modules        September 2022
+Internet-Draft        IANA-Maintained YANG Modules          October 2022
 
 
     "The DOTS telemetry module (Section 10.1) uses "enumerations" rather
@@ -182,9 +182,14 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
    version of the module in a specification document that registers the
    module or only a script to be used (including by IANA) for generating
    the module (e.g., an XSLT stylesheet as in Appendix A of [RFC9108]).
-   When a script is used, the Internet-Draft that defines an IANA-
-   maintained module SHOULD include an appendix with the initial full
-   version of the module.  Including such an appendix in pre-RFC
+   For both cases, the document that defines an IANA-maintained module
+   MUST include a note indicating that the document is only documenting
+   the initial version of the module and that the authoritative version
+   is to be retrieved from the IANA registry.  It is RECOMMENDED to
+   include the URL from where to retrieve the recent version of the
+   module.  When a script is used, the Internet-Draft that defines an
+   IANA-maintained module SHOULD include an appendix with the initial
+   full version of the module.  Including such an appendix in pre-RFC
    versions is meant to assess the correctness of the outcome of the
    supplied script.  The authors MUST include a note to the RFC Editor
    requesting that the appendix be removed before publication as RFC.
@@ -212,19 +217,19 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
    registry.  Concretely, the IANA Considerations Section SHALL at least
    provide the following information:
 
+
+
+
+
+Boucadair                 Expires 10 April 2023                 [Page 4]
+
+Internet-Draft        IANA-Maintained YANG Modules          October 2022
+
+
    *  An IANA request to add a note to the page displaying the
       information about the IANA-maintained module that new values must
       not be directly added to the module, but to an authoritative IANA
       registry.
-
-
-
-
-
-Boucadair                 Expires 12 March 2023                 [Page 4]
-
-Internet-Draft        IANA-Maintained YANG Modules        September 2022
-
 
    *  An IANA request to add a note to the authoritative IANA registry
       to indicate that any change to the registry must be reflected into
@@ -272,14 +277,9 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
 
 
-
-
-
-
-
-Boucadair                 Expires 12 March 2023                 [Page 5]
+Boucadair                 Expires 10 April 2023                 [Page 5]
 
-Internet-Draft        IANA-Maintained YANG Modules        September 2022
+Internet-Draft        IANA-Maintained YANG Modules          October 2022
 
 
    When a value is added to the "foo" registry, a new "identity"
@@ -333,9 +333,9 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
 
 
-Boucadair                 Expires 12 March 2023                 [Page 6]
+Boucadair                 Expires 10 April 2023                 [Page 6]
 
-Internet-Draft        IANA-Maintained YANG Modules        September 2022
+Internet-Draft        IANA-Maintained YANG Modules          October 2022
 
 
    "value":       Contains the decimal value of the IANA-assigned value.
@@ -389,9 +389,9 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
 
 
-Boucadair                 Expires 12 March 2023                 [Page 7]
+Boucadair                 Expires 10 April 2023                 [Page 7]
 
-Internet-Draft        IANA-Maintained YANG Modules        September 2022
+Internet-Draft        IANA-Maintained YANG Modules          October 2022
 
 
 8.1.  Normative References
@@ -445,9 +445,9 @@ Internet-Draft        IANA-Maintained YANG Modules        September 2022
 
 
 
-Boucadair                 Expires 12 March 2023                 [Page 8]
+Boucadair                 Expires 10 April 2023                 [Page 8]
 
-Internet-Draft        IANA-Maintained YANG Modules        September 2022
+Internet-Draft        IANA-Maintained YANG Modules          October 2022
 
 
    [RFC9132]  Boucadair, M., Ed., Shallow, J., and T. Reddy.K,
@@ -501,4 +501,4 @@ Author's Address
 
 
 
-Boucadair                 Expires 12 March 2023                 [Page 9]
+Boucadair                 Expires 10 April 2023                 [Page 9]

@@ -10,7 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-boucadair-netmod-iana-registries-03"
+<rfc category="std" docName="draft-boucadair-netmod-iana-registries-05"
      ipr="trust200902" updates="8407, 8126">
   <front>
     <title abbrev="IANA-Maintained YANG Modules">Recommendations for Creating
@@ -141,15 +141,20 @@
       version of the module in a specification document that registers the
       module or only a script to be used (including by IANA) for generating
       the module (e.g., an XSLT stylesheet as in Appendix A of <xref
-      target="RFC9108"></xref>). When a script is used, the Internet-Draft
-      that defines an IANA-maintained module SHOULD include an appendix with
-      the initial full version of the module. Including such an appendix in
-      pre-RFC versions is meant to assess the correctness of the outcome of
-      the supplied script. The authors MUST include a note to the RFC Editor
-      requesting that the appendix be removed before publication as RFC.
-      Initial versions of IANA-maintained modules that are published in RFCs
-      may be misused despite the appropriate language to refer to the IANA
-      registry to retrieve the up-to-date module. This is problematic for
+      target="RFC9108"></xref>). For both cases, the document that defines an
+      IANA-maintained module MUST include a note indicating that the document
+      is only documenting the initial version of the module and that the
+      authoritative version is to be retrieved from the IANA registry. It is
+      RECOMMENDED to include the URL from where to retrieve the recent version
+      of the module. When a script is used, the Internet-Draft that defines an
+      IANA-maintained module SHOULD include an appendix with the initial full
+      version of the module. Including such an appendix in pre-RFC versions is
+      meant to assess the correctness of the outcome of the supplied script.
+      The authors MUST include a note to the RFC Editor requesting that the
+      appendix be removed before publication as RFC. Initial versions of
+      IANA-maintained modules that are published in RFCs may be misused
+      despite the appropriate language to refer to the IANA registry to
+      retrieve the up-to-date module. This is problematic for
       interoperability, e.g., when values are deprecated or are associated
       with a new meaning. <list style="empty">
           <t>Note: <xref target="Style"></xref> provides XSLT 1.0 stylesheets
@@ -171,7 +176,7 @@
       IANA module. These instructions describe how to proceed with updates to
       the IANA-maintained module that are triggered by a change to the
       authoritative registry. Concretely, the IANA Considerations Section
-      SHALL at least provide the following information: </t>
+      SHALL at least provide the following information:</t>
 
       <t><list style="symbols">
           <t>An IANA request to add a note to the page displaying the
@@ -181,7 +186,7 @@
 
           <t>An IANA request to add a note to the authoritative IANA registry
           to indicate that any change to the registry must be reflected into
-          the corresponding IANA-maintained module. </t>
+          the corresponding IANA-maintained module.</t>
 
           <t>Details about the required actions (e.g., add a new "identity" or
           "enum" statement) to update the IANA-maintained module to reflect
@@ -189,17 +194,17 @@
           have to include the procedure to create a new "identity" statement
           name and sub-statements ("base", "status", "description", and
           "reference") or a new "enum" statement and sub-statements ("value",
-          "status", "description", and "reference"). </t>
+          "status", "description", and "reference").</t>
 
           <t>A note that unassigned or reserved values must not be present in
           the IANA-maintained module.</t>
 
           <t>An indication whether experimental values are included in the
           IANA-maintained module. Absent such an indication, experimental
-          values MUST NOT be listed in the IANA-maintained module. </t>
+          values MUST NOT be listed in the IANA-maintained module.</t>
 
-          <t>An instruction about how to generate the "revision" statement.
-          </t>
+          <t>An instruction about how to generate the "revision"
+          statement.</t>
         </list></t>
 
       <t>A template for the IANA Considerations is provided in <xref
@@ -317,7 +322,7 @@
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
-      <t>This document does not require any IANA action. </t>
+      <t>This document does not require any IANA action.</t>
     </section>
 
     <section anchor="security" title="Security Considerations">
@@ -335,7 +340,7 @@
       <xref target="RFC9108"></xref>.</t>
 
       <t>Thanks to Andy Bierman for the comments. Lou Berger suggested to
-      include more details about IANA considerations. </t>
+      include more details about IANA considerations.</t>
     </section>
   </middle>
 
